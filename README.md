@@ -14,7 +14,12 @@ while generating the program will use around 230 MiB of RAM.
 
 
 ## Screenshots
-There are currently no screenshots.
+### GUI
+![Screenshot of the GUI](https://stronghold.host/media/Ol85VTbj.png "Screenshot")  
+### Result
+![The resulting Image](https://stronghold.host/media/DFz5pSul.png "Result")
+
+*Blend map generation is not yet implemented.*
 
 ## License
 You can do whatever the heck you want with this code. But rather than making your own better version,  
