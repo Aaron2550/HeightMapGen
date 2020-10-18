@@ -3,7 +3,7 @@ A height map generator with GUI which generates you a height map with corrospond
 ***Ignore the german commit titles, Visual Studio likes to just push out a commit without asking me what the title should be.***
 
 ## Requirements
-This requires .NET Framework 4.7.2 and a display (duh) unless... you manage to use it wihtout the GUI ... i guess?
+This requires .NET Framework 4.7.2 and a display (duh) unless ... you manage to use it without the GUI ... i guess?
 
 ## Limitations
 Technically, the biggest possible height map one could generate with the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library would be  
