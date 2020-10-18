@@ -108,7 +108,10 @@ namespace Noise {
 
                 double dx = xi + c.dx, dy = yi + c.dy;
                 double attn = 2.0 / 3.0 - dx * dx - dy * dy;
-                if (attn <= 0) continue;
+
+                if (attn <= 0) {
+                    continue;
+                }
 
                 int pxm = (xsb + c.xsv) & PMASK, pym = (ysb + c.ysv) & PMASK;
                 Grad2 grad = permGrad2[perm[pxm] ^ pym];
