@@ -27,4 +27,4 @@ The resulting image took up around 6 MiB on the hard drive, while generating the
 You can do whatever the heck you want with this code. But rather than making your own better version,  
 i'd be happy if you just open a pull request to improve upon my cursed code.
 
-This uses the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library by [K.JPG](https://github.com/KdotJPG).
+This uses a modified version of the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library by [K.JPG](https://github.com/KdotJPG).
