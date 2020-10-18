@@ -114,27 +114,21 @@ namespace HeightMapGen {
 			switch (imageFormatComboBox.SelectedIndex) {
 				case 0:
 					saveFileDialog.DefaultExt = "png";
-					saveFileDialog.Filter = "png";
 					break;
 				case 1:
 					saveFileDialog.DefaultExt = "jpeg";
-					saveFileDialog.Filter = "jpeg";
 					break;
 				case 2:
 					saveFileDialog.DefaultExt = "tiff";
-					saveFileDialog.Filter = "tiff";
 					break;
 				case 3:
 					saveFileDialog.DefaultExt = "bmp";
-					saveFileDialog.Filter = "bmp";
 					break;
 				case 4:
 					saveFileDialog.DefaultExt = "png";
-					saveFileDialog.Filter = "png";
 					break;
 				default:
 					saveFileDialog.DefaultExt = "png";
-					saveFileDialog.Filter = "png";
 					break;
 			}
 
