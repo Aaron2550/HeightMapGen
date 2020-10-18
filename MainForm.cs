@@ -25,7 +25,6 @@ namespace HeightMapGen {
 				long seed = useRandomSeedCheckBox.Checked ? random.Next(int.MinValue, int.MaxValue) : Convert.ToInt64(seedInputBox.Value);
 
 				int coordinateMultiplier = 1;
-				int colorValue;
 
 				double finalMax = 1d;
 				double value;
