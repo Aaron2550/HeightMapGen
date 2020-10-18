@@ -9,15 +9,15 @@ This requires .NET Framework 4.7.2 and a display (duh) unless... you manage to u
 Technically, the biggest possible height map one could generate with the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library would be  
 1.79769313486232 E308 pixels by 1.79769313486232 E308 pixels big.  *Why would you need it any bigger?*
 
-When generating a 2048x2048 height map, the resulting image will take up around 6.14 MiB on your hard drive,  
-while generating the program will use around 230 MiB of RAM.
+Generating a 2048x2048 height map with 8 octaves using the smooth library, took about 25 seconds.  
+The resulting image took up around 6 MiB on the hard drive, while generating the program will used around 85 MiB of RAM.
 
 
 ## Screenshots
 ### GUI
-![Screenshot of the GUI](https://stronghold.host/media/Ol85VTbj.png "Screenshot")  
+![Screenshot of the GUI](https://stronghold.host/media/dqCdyDpf.png "Screenshot")  
 ### Result
-![The resulting Image](https://stronghold.host/media/DFz5pSul.png "Result")
+![The resulting Image](https://stronghold.host/media/gISOvjCE.png "Result")
 
 *Blend map generation is not yet implemented.*
 
