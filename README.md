@@ -14,7 +14,6 @@ Technically, the biggest possible height map one could generate with the [OpenSi
 Generating a 2048x2048 height map with 8 octaves using the smooth library, took about 25 seconds.  
 The resulting image took up around 6 MiB on the hard drive, while generating the program will used around 85 MiB of RAM.
 
-
 ## Screenshots
 ### GUI
 ![Screenshot of the GUI](https://stronghold.host/media/dqCdyDpf.png "Screenshot")  
@@ -27,4 +26,5 @@ The resulting image took up around 6 MiB on the hard drive, while generating the
 You can do whatever the heck you want with this code. But rather than making your own better version,  
 i'd be happy if you just open a pull request to improve upon my cursed code.
 
-This uses a modified version of the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library by [K.JPG](https://github.com/KdotJPG).
+This uses a slightly modified version of the [OpenSimplex2](https://github.com/KdotJPG/OpenSimplex2) library by [K.JPG](https://github.com/KdotJPG).
+*(It's only been modified to make codacy shut up about it having bad code)*
