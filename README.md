@@ -12,7 +12,7 @@ Technically, the biggest possible height map one could generate with the [OpenSi
 1.79769313486232 E308 pixels by 1.79769313486232 E308 pixels big.  *Why would you need it any bigger?*
 
 Generating a 2048x2048 height map with 8 octaves using the smooth library, took about 25 seconds.  
-The resulting image took up around 6 MiB on the hard drive, while generating the program will used around 85 MiB of RAM.
+The resulting image took up around 6 MiB on the hard drive, while generating the program will use around 85 MiB of RAM.
 
 ## Screenshots
 ### GUI
