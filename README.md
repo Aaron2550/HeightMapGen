@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2cf58825ac87454b98b7401872067a89)](https://www.codacy.com/gh/Aaron2550/HeightMapGen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Aaron2550/HeightMapGen&amp;utm_campaign=Badge_Grade)
+
 # HeightMapGen
 A height map generator with GUI which generates you a height map with corrosponding blend map.  
 ***Ignore the german commit titles, Visual Studio likes to just push out a commit without asking me what the title should be.***
