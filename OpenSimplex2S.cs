@@ -30,13 +30,19 @@ namespace Noise {
             permGrad3 = new Grad3[PSIZE];
             permGrad4 = new Grad4[PSIZE];
             short[] source = new short[PSIZE];
-            for (short i = 0; i < PSIZE; i++)
+
+            for (short i = 0; i < PSIZE; i++) { 
                 source[i] = i;
+            }
+
             for (int i = PSIZE - 1; i >= 0; i--) {
                 seed = seed * 6364136223846793005L + 1442695040888963407L;
                 int r = (int) ((seed + 31) % (i + 1));
-                if (r < 0)
+
+                if (r < 0) { 
                     r += (i + 1);
+                }
+
                 perm[i] = source[r];
                 permGrad2[i] = GRADIENTS_2D[perm[i]];
                 permGrad3[i] = GRADIENTS_3D[perm[i]];
@@ -197,9 +203,11 @@ namespace Noise {
             // Point contributions
             double value = 0;
             LatticePoint3D c = LOOKUP_3D[index];
+
             while (c != null) {
                 double dxr = xri + c.dxr, dyr = yri + c.dyr, dzr = zri + c.dzr;
                 double attn = 0.75 - dxr * dxr - dyr * dyr - dzr * dzr;
+
                 if (attn < 0) {
                     c = c.NextOnFailure;
                 } else {
@@ -295,6 +303,7 @@ namespace Noise {
             foreach (LatticePoint4D c in LOOKUP_4D[index]) {
                 double dx = xi + c.dx, dy = yi + c.dy, dz = zi + c.dz, dw = wi + c.dw;
                 double attn = 0.8 - dx * dx - dy * dy - dz * dz - dw * dw;
+
                 if (attn > 0) {
                     attn *= attn;
 
@@ -341,6 +350,7 @@ namespace Noise {
 
             for (int i = 0; i < 8; i++) {
                 int i1, j1, i2, j2;
+
                 if ((i & 1) == 0) {
                     if ((i & 2) == 0) { i1 = -1; j1 = 0; } else { i1 = 1; j1 = 0; }
                     if ((i & 4) == 0) { i2 = 0; j2 = -1; } else { i2 = 0; j2 = 1; }
@@ -348,6 +358,7 @@ namespace Noise {
                     if ((i & 2) != 0) { i1 = 2; j1 = 1; } else { i1 = 0; j1 = 1; }
                     if ((i & 4) != 0) { i2 = 1; j2 = 2; } else { i2 = 1; j2 = 0; }
                 }
+
                 LOOKUP_2D[i * 4 + 0] = new LatticePoint2D(0, 0);
                 LOOKUP_2D[i * 4 + 1] = new LatticePoint2D(1, 1);
                 LOOKUP_2D[i * 4 + 2] = new LatticePoint2D(i1, j1);
@@ -676,7 +687,9 @@ namespace Noise {
                 new int[] { 0x55, 0x59, 0x65, 0x69, 0x6A, 0x95, 0x99, 0x9A, 0xA5, 0xA6, 0xA9, 0xAA, 0xAE, 0xBA, 0xEA },
                 new int[] { 0x55, 0x56, 0x59, 0x5A, 0x65, 0x66, 0x69, 0x6A, 0x95, 0x96, 0x99, 0x9A, 0xA5, 0xA6, 0xA9, 0xAA, 0xAB, 0xAE, 0xBA, 0xEA },
             };
+
             LatticePoint4D[] latticePoints = new LatticePoint4D[256];
+
             for (int i = 0; i < 256; i++) {
                 int cx = ((i >> 0) & 3) - 1;
                 int cy = ((i >> 2) & 3) - 1;
@@ -684,8 +697,10 @@ namespace Noise {
                 int cw = ((i >> 6) & 3) - 1;
                 latticePoints[i] = new LatticePoint4D(cx, cy, cz, cw);
             }
+
             for (int i = 0; i < 256; i++) {
                 LOOKUP_4D[i] = new LatticePoint4D[lookup4DPregen[i].Length];
+
                 for (int j = 0; j < lookup4DPregen[i].Length; j++) {
                     LOOKUP_4D[i][j] = latticePoints[lookup4DPregen[i][j]];
                 }
@@ -718,9 +733,11 @@ namespace Noise {
                 new Grad2(-0.38268343236509,   0.923879532511287),
                 new Grad2(-0.130526192220052,  0.99144486137381)
             };
+
             for (int i = 0; i < grad2.Length; i++) {
                 grad2[i].dx /= N2; grad2[i].dy /= N2;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_2D[i] = grad2[i % grad2.Length];
             }
@@ -776,9 +793,11 @@ namespace Noise {
                 new Grad3( 3.0862664687972017,  1.1721513422464978,  0.0),
                 new Grad3( 1.1721513422464978,  3.0862664687972017,  0.0)
             };
+
             for (int i = 0; i < grad3.Length; i++) {
                 grad3[i].dx /= N3; grad3[i].dy /= N3; grad3[i].dz /= N3;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_3D[i] = grad3[i % grad3.Length];
             }
@@ -946,9 +965,11 @@ namespace Noise {
                 new Grad4( 0.7821684431180708,    0.4321472685365301,    0.4321472685365301,   -0.12128480194602098),
                 new Grad4( 0.753341017856078,     0.37968289875261624,   0.37968289875261624,   0.37968289875261624)
             };
+
             for (int i = 0; i < grad4.Length; i++) {
                 grad4[i].dx /= N4; grad4[i].dy /= N4; grad4[i].dz /= N4; grad4[i].dw /= N4;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_4D[i] = grad4[i % grad4.Length];
             }
@@ -957,6 +978,7 @@ namespace Noise {
         private struct LatticePoint2D {
             public int xsv, ysv;
             public double dx, dy;
+
             public LatticePoint2D(int xsv, int ysv) {
                 this.xsv = xsv; this.ysv = ysv;
                 double ssv = (xsv + ysv) * -0.211324865405187;
@@ -969,6 +991,7 @@ namespace Noise {
             public double dxr, dyr, dzr;
             public int xrv, yrv, zrv;
             public LatticePoint3D NextOnFailure, NextOnSuccess;
+
             public LatticePoint3D(int xrv, int yrv, int zrv, int lattice) {
                 this.dxr = -xrv + lattice * 0.5; this.dyr = -yrv + lattice * 0.5; this.dzr = -zrv + lattice * 0.5;
                 this.xrv = xrv + lattice * 1024; this.yrv = yrv + lattice * 1024; this.zrv = zrv + lattice * 1024;
@@ -978,6 +1001,7 @@ namespace Noise {
         private class LatticePoint4D {
             public int xsv, ysv, zsv, wsv;
             public double dx, dy, dz, dw;
+
             public LatticePoint4D(int xsv, int ysv, int zsv, int wsv) {
                 this.xsv = xsv; this.ysv = ysv; this.zsv = zsv; this.wsv = wsv;
                 double ssv = (xsv + ysv + zsv + wsv) * -0.138196601125011;
@@ -990,6 +1014,7 @@ namespace Noise {
 
         private struct Grad2 {
             public double dx, dy;
+
             public Grad2(double dx, double dy) {
                 this.dx = dx; this.dy = dy;
             }
@@ -997,6 +1022,7 @@ namespace Noise {
 
         private struct Grad3 {
             public double dx, dy, dz;
+
             public Grad3(double dx, double dy, double dz) {
                 this.dx = dx; this.dy = dy; this.dz = dz;
             }
@@ -1004,6 +1030,7 @@ namespace Noise {
 
         private struct Grad4 {
             public double dx, dy, dz, dw;
+
             public Grad4(double dx, double dy, double dz, double dw) {
                 this.dx = dx; this.dy = dy; this.dz = dz; this.dw = dw;
             }

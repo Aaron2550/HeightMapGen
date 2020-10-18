@@ -75,7 +75,6 @@ namespace HeightMapGen {
                 }
 
                 bitmap.Dispose();
-                GC.Collect();
             }
         }
 

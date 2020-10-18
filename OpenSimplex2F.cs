@@ -30,13 +30,18 @@ namespace Noise {
             permGrad3 = new Grad3[PSIZE];
             permGrad4 = new Grad4[PSIZE];
             short[] source = new short[PSIZE];
+
             for (short i = 0; i < PSIZE; i++)
                 source[i] = i;
+
             for (int i = PSIZE - 1; i >= 0; i--) {
                 seed = seed * 6364136223846793005L + 1442695040888963407L;
                 int r = (int) ((seed + 31) % (i + 1));
-                if (r < 0)
+
+                if (r < 0) {
                     r += (i + 1);
+                }
+
                 perm[i] = source[r];
                 permGrad2[i] = GRADIENTS_2D[perm[i]];
                 permGrad3[i] = GRADIENTS_3D[perm[i]];
@@ -192,9 +197,11 @@ namespace Noise {
             // Point contributions
             double value = 0;
             LatticePoint3D c = LOOKUP_3D[index];
+
             while (c != null) {
                 double dxr = xri + c.dxr, dyr = yri + c.dyr, dzr = zri + c.dzr;
                 double attn = 0.5 - dxr * dxr - dyr * dyr - dzr * dzr;
+
                 if (attn < 0) {
                     c = c.NextOnFailure;
                 } else {
@@ -293,32 +300,38 @@ namespace Noise {
             int vertexIndex, via, vib;
             double asi, bsi;
             if (aabbScore > ababScore && aabbScore > abbaScore) {
+
                 if (aabb > 0) {
                     asi = zsi; bsi = wsi; vertexIndex = 0b0011; via = 0b0111; vib = 0b1011;
                 } else {
                     asi = xsi; bsi = ysi; vertexIndex = 0b1100; via = 0b1101; vib = 0b1110;
                 }
             } else if (ababScore > abbaScore) {
+
                 if (abab > 0) {
                     asi = ysi; bsi = wsi; vertexIndex = 0b0101; via = 0b0111; vib = 0b1101;
                 } else {
                     asi = xsi; bsi = zsi; vertexIndex = 0b1010; via = 0b1011; vib = 0b1110;
                 }
             } else {
+
                 if (abba > 0) {
                     asi = ysi; bsi = zsi; vertexIndex = 0b1001; via = 0b1011; vib = 0b1101;
                 } else {
                     asi = xsi; bsi = wsi; vertexIndex = 0b0110; via = 0b0111; vib = 0b1110;
                 }
             }
+
             if (bsi > asi) {
                 via = vib;
                 double temp = bsi;
                 bsi = asi;
                 asi = temp;
             }
+
             if (siSum + asi > 3) {
                 vertexIndex = via;
+
                 if (siSum + bsi > 4) {
                     vertexIndex = 0b1111;
                 }
@@ -339,6 +352,7 @@ namespace Noise {
                 double xi = xsi + ssi, yi = ysi + ssi, zi = zsi + ssi, wi = wsi + ssi;
                 double dx = xi + c.dx, dy = yi + c.dy, dz = zi + c.dz, dw = wi + c.dw;
                 double attn = 0.5 - dx * dx - dy * dy - dz * dz - dw * dw;
+
                 if (attn > 0) {
                     int pxm = xsb & PMASK, pym = ysb & PMASK, pzm = zsb & PMASK, pwm = wsb & PMASK;
                     Grad4 grad = permGrad4[perm[perm[perm[pxm] ^ pym] ^ pzm] ^ pwm];
@@ -349,7 +363,9 @@ namespace Noise {
                 }
 
                 // Maybe this helps the compiler/JVM/LLVM/etc. know we can end the loop here. Maybe not.
-                if (i == 4) break;
+                if (i == 4) {
+                    break;
+                }
 
                 // Update the relative skewed coordinates to reference the vertex we just added.
                 // Rather, reference its counterpart on the lattice copy that is shifted down by
@@ -360,6 +376,7 @@ namespace Noise {
                 // Next point is the closest vertex on the 4-simplex whose base vertex is the aforementioned vertex.
                 double score0 = 1.0 + ssi * (-1.0 / 0.309016994374947); // Seems slightly faster than 1.0-xsi-ysi-zsi-wsi
                 vertexIndex = 0b0000;
+
                 if (xsi >= ysi && xsi >= zsi && xsi >= wsi && xsi >= score0) {
                     vertexIndex = 0b0001;
                 } else if (ysi > xsi && ysi >= zsi && ysi >= wsi && ysi >= score0) {
@@ -477,9 +494,11 @@ namespace Noise {
                 new Grad2(-0.38268343236509,   0.923879532511287),
                 new Grad2(-0.130526192220052,  0.99144486137381)
             };
+
             for (int i = 0; i < grad2.Length; i++) {
                 grad2[i].dx /= N2; grad2[i].dy /= N2;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_2D[i] = grad2[i % grad2.Length];
             }
@@ -535,9 +554,11 @@ namespace Noise {
                 new Grad3( 3.0862664687972017,  1.1721513422464978,  0.0),
                 new Grad3( 1.1721513422464978,  3.0862664687972017,  0.0)
             };
+
             for (int i = 0; i < grad3.Length; i++) {
                 grad3[i].dx /= N3; grad3[i].dy /= N3; grad3[i].dz /= N3;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_3D[i] = grad3[i % grad3.Length];
             }
@@ -705,9 +726,11 @@ namespace Noise {
                 new Grad4( 0.7821684431180708,    0.4321472685365301,    0.4321472685365301,   -0.12128480194602098),
                 new Grad4( 0.753341017856078,     0.37968289875261624,   0.37968289875261624,   0.37968289875261624)
             };
+
             for (int i = 0; i < grad4.Length; i++) {
                 grad4[i].dx /= N4; grad4[i].dy /= N4; grad4[i].dz /= N4; grad4[i].dw /= N4;
             }
+
             for (int i = 0; i < PSIZE; i++) {
                 GRADIENTS_4D[i] = grad4[i % grad4.Length];
             }
@@ -716,6 +739,7 @@ namespace Noise {
         private struct LatticePoint2D {
             public int xsv, ysv;
             public double dx, dy;
+
             public LatticePoint2D(int xsv, int ysv) {
                 this.xsv = xsv; this.ysv = ysv;
                 double ssv = (xsv + ysv) * -0.211324865405187;
@@ -728,6 +752,7 @@ namespace Noise {
             public double dxr, dyr, dzr;
             public int xrv, yrv, zrv;
             public LatticePoint3D NextOnFailure, NextOnSuccess;
+
             public LatticePoint3D(int xrv, int yrv, int zrv, int lattice) {
                 this.dxr = -xrv + lattice * 0.5; this.dyr = -yrv + lattice * 0.5; this.dzr = -zrv + lattice * 0.5;
                 this.xrv = xrv + lattice * 1024; this.yrv = yrv + lattice * 1024; this.zrv = zrv + lattice * 1024;
@@ -739,6 +764,7 @@ namespace Noise {
             public double dx, dy, dz, dw;
             public double xsi, ysi, zsi, wsi;
             public double ssiDelta;
+
             public LatticePoint4D(int xsv, int ysv, int zsv, int wsv) {
                 this.xsv = xsv + 409; this.ysv = ysv + 409; this.zsv = zsv + 409; this.wsv = wsv + 409;
                 double ssv = (xsv + ysv + zsv + wsv) * 0.309016994374947;
@@ -756,6 +782,7 @@ namespace Noise {
 
         private struct Grad2 {
             public double dx, dy;
+
             public Grad2(double dx, double dy) {
                 this.dx = dx; this.dy = dy;
             }
@@ -763,6 +790,7 @@ namespace Noise {
 
         private struct Grad3 {
             public double dx, dy, dz;
+
             public Grad3(double dx, double dy, double dz) {
                 this.dx = dx; this.dy = dy; this.dz = dz;
             }
@@ -770,6 +798,7 @@ namespace Noise {
 
         private struct Grad4 {
             public double dx, dy, dz, dw;
+
             public Grad4(double dx, double dy, double dz, double dw) {
                 this.dx = dx; this.dy = dy; this.dz = dz; this.dw = dw;
             }
