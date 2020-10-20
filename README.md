@@ -20,7 +20,7 @@ The resulting image took up around 6 MiB on the hard drive, while generating the
 ### Result
 ![The resulting Image](https://stronghold.host/media/fYkrT0Zt.png "Result")
 
-*Blend map generation is not yet working **correctly***
+*You cannot adjust the distribution of textures in the blend map, yet*
 
 ## License
 You can do whatever the heck you want with this code. But rather than making your own better version,  
