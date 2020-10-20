@@ -18,7 +18,7 @@ The resulting image took up around 6 MiB on the hard drive, while generating the
 ### GUI
 ![Screenshot of the GUI](https://stronghold.host/media/m68Qf6YK.png "Screenshot")  
 ### Result
-![The resulting Image](https://stronghold.host/media/fYkrT0Zt.png "Result")
+![The resulting Image](https://stronghold.host/media/69Wa7YNT.png "Result")
 
 *You cannot adjust the distribution of textures in the blend map, yet*
 
