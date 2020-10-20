@@ -293,9 +293,9 @@
             "gif"});
             this.imageFormatComboBox.Location = new System.Drawing.Point(12, 251);
             this.imageFormatComboBox.Name = "imageFormatComboBox";
-            this.imageFormatComboBox.Size = new System.Drawing.Size(120, 21);
+            this.imageFormatComboBox.Size = new System.Drawing.Size(97, 21);
             this.imageFormatComboBox.TabIndex = 20;
-            this.imageFormatComboBox.Text = "Select image format";
+            this.imageFormatComboBox.Text = "png";
             // 
             // MainForm
             // 

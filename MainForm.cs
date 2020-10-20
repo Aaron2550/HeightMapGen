@@ -77,15 +77,31 @@ namespace HeightMapGen {
 
 		public void mapValue(int x, int y, double value, double finalMaximum, double exponent) {
 			value = Math.Pow(normalizeValue(value, finalMaximum, 0d, 1d, 0d), exponent);
+			int red = 0, blue = 0;
 
-			if (value <= 0.33d) {
-				blendBitmap.SetPixel(x, y, Color.FromArgb((int) normalizeValue(value, 0.33d, 0d, 255d, 0d), 0, 0));
-			} else if (value <= 0.66d) {
-				blendBitmap.SetPixel(x, y, Color.FromArgb(0, (int) normalizeValue(value, 0.66d, 0.33d, 255d, 0d), 0));
-			} else {
-				blendBitmap.SetPixel(x, y, Color.FromArgb(0, 0, (int) normalizeValue(value, 1d, 0.66d, 255d, 0d)));
+			int green = Convert.ToInt32(128 * Math.Sin(2 * value * Math.PI + 3 * (Math.PI / 2)) + 128);
+
+			if (value >= 0.5d) {
+				red = Convert.ToInt32(128 * Math.Sin(2 * value * Math.PI + (Math.PI / 2)) + 128);
 			}
 
+			if (value <= 0.5d) {
+				blue = Convert.ToInt32(128 * Math.Sin(2 * value * Math.PI + (Math.PI / 2)) + 128);
+			}
+
+			if (red > 255) {
+				red = 255;
+			}
+
+			if (blue > 255) {
+				blue = 255;
+			}
+
+			if (green > 255) {
+				green = 255;
+			}
+
+			blendBitmap.SetPixel(x, y, Color.FromArgb(red, green, blue));
 			heightBitmap.SetPixel(x, y, Color.FromArgb((int) (value * 255), (int) (value * 255), (int) (value * 255)));
 		}
 
